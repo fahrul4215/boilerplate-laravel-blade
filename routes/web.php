@@ -14,4 +14,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::middleware('role:admin')->group(function () {
+        Route::get('/admin', function () {
+            return view('admin');
+        })->name('admin');
+    });
 });
