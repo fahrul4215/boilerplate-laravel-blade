@@ -24,7 +24,7 @@ class CreateNewUser implements CreatesNewUsers
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')],
             'password' => $this->passwordRules(),
-            'role' => ['required', 'in:user,admin'], // only allow expected roles
+            'role' => ['required'],
         ])->validate();
 
         return User::create([

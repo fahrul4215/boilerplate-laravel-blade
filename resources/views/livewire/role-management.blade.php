@@ -1,11 +1,11 @@
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
     <div class="space-y-6">
         <!-- Title -->
-        <div class="border-b border-gray-200 pb-4">
-            <h2 class="text-2xl font-bold tracking-tight text-gray-900">
+        <x-slot name="header">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Role Management') }}
             </h2>
-        </div>
+        </x-slot>
 
         <!-- Form -->
         <div class="bg-white shadow rounded-xl p-6">

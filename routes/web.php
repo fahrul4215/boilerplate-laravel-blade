@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\RoleManagement;
+use App\Livewire\UserManagement;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,11 +17,12 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::middleware('role:admin')->group(function () {
+    Route::middleware('role:superadmin,admin')->group(function () {
         Route::get('/admin', function () {
             return view('admin');
         })->name('admin');
 
         Route::get('/roles', RoleManagement::class)->name('roles');
+        Route::get('/users', UserManagement::class)->name('users.index');
     });
 });

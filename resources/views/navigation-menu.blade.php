@@ -13,9 +13,15 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     @auth
-                        @if(auth()->user()->role === 'admin')
+                        @if(stripos(auth()->user()->role, 'admin') !== false)
                             <x-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')">
                                 {{ __('Admin Panel') }}
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('roles') }}" :active="request()->routeIs('roles')">
+                                {{ __('Manage Roles') }}
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
+                                {{ __('Manage Users') }}
                             </x-nav-link>
                         @endif
 
@@ -24,10 +30,6 @@
                                 {{ __('User Dashboard') }}
                             </x-nav-link>
                         @endif
-
-                        <x-nav-link href="{{ route('roles') }}" :active="request()->routeIs('roles')">
-                            {{ __('Manage Roles') }}
-                        </x-nav-link>
                     @endauth
                 </div>
             </div>
