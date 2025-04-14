@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\RoleManagement;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,5 +20,7 @@ Route::middleware([
         Route::get('/admin', function () {
             return view('admin');
         })->name('admin');
+
+        Route::get('/roles', RoleManagement::class)->name('roles');
     });
 });

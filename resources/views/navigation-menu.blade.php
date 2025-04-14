@@ -24,6 +24,10 @@
                                 {{ __('User Dashboard') }}
                             </x-nav-link>
                         @endif
+
+                        <x-nav-link href="{{ route('roles') }}" :active="request()->routeIs('roles')">
+                            {{ __('Manage Roles') }}
+                        </x-nav-link>
                     @endauth
                 </div>
             </div>
@@ -185,8 +189,7 @@
                 <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf
 
-                    <x-responsive-nav-link href="{{ route('logout') }}"
-                                   @click.prevent="$root.submit();">
+                    <x-responsive-nav-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
