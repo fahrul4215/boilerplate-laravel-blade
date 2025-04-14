@@ -2,16 +2,6 @@
 
 use Illuminate\Support\Str;
 
-$times = [
-    'test' => 1,
-    'short' => env('APP_ENV') != 'production' ? 1 : now()->addMinutes(5),
-    'default' => env('APP_ENV') != 'production' ? 1 : now()->addHours(2),
-    'long' => env('APP_ENV') != 'production' ? 1 : now()->addHours(6),
-    'halfday' => env('APP_ENV') != 'production' ? 1 : now()->addHours(12),
-    'day' => env('APP_ENV') != 'production' ? 1 : now()->addDays(1),
-    'week' => env('APP_ENV') != 'production' ? 1 : now()->addWeeks(1),
-];
-
 return [
 
     /*
@@ -113,8 +103,6 @@ return [
     |
     */
 
-    'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_cache_'),
+    'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache_'),
 
-    // additional
-    'times' => $times,
 ];

@@ -1,25 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-a {
-    color: #dc9814;
-}
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
 
-.zoom-container {
-    overflow: hidden;
-    position: relative;
-}
-
-.zoom-container img {
-    transition: transform 0.3s ease;
-    /* Smooth transition for the zoom effect */
-    max-width: 100%;
-    display: block;
-    margin: auto;
-}
-
-.zoom-container:hover img {
-    transform: scale(1.5);
-    /* Scale the image to 1.5 times its original size */
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
 }
