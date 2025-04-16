@@ -2,12 +2,14 @@
 
 namespace App\Livewire;
 
+use App\Models\Role;
 use App\Models\User;
 use Livewire\Component;
 
 class UserManagement extends Component
 {
-    public $name, $email, $userId, $password, $password_confirmation;
+    public $name, $email, $role, $userId, $password, $password_confirmation;
+    public $roles;
     public $isEditing = false;
 
     protected function rules()
@@ -22,6 +24,8 @@ class UserManagement extends Component
 
     public function render()
     {
+        $this->roles = Role::where('name', '!=', 'superadmin')->get();
+
         return view('livewire.user-management', [
             'users' => User::latest()->where('role', '!=', 'superadmin')->get(),
             // 'users' => User::latest()->where('role', 'NOT LIKE', '%admin%')->get(),
@@ -32,6 +36,7 @@ class UserManagement extends Component
     {
         $this->name = '';
         $this->email = '';
+        $this->role = '';
         $this->password = '';
         $this->password_confirmation = '';
         $this->userId = null;
@@ -46,6 +51,7 @@ class UserManagement extends Component
         $data = [
             'name' => $this->name,
             'email' => $this->email,
+            'role' => $this->role,
         ];
 
         if (!empty($this->password)) {
@@ -54,8 +60,8 @@ class UserManagement extends Component
 
         User::updateOrCreate(['id' => $this->userId], $data);
 
-        $this->resetInput();
         session()->flash('message', $this->isEditing ? 'User updated.' : 'User created.');
+        $this->resetInput();
     }
 
     public function edit($id)
@@ -64,6 +70,7 @@ class UserManagement extends Component
         $this->userId = $user->id;
         $this->name = $user->name;
         $this->email = $user->email;
+        $this->role = $user->role;
         $this->isEditing = true;
     }
 

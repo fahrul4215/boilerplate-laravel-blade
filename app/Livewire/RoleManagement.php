@@ -12,6 +12,13 @@ class RoleManagement extends Component
     public $roleId;
     public $isEditing = false;
 
+    protected function rules()
+    {
+        return [
+            'name' => 'required|unique:roles,name,' . $this->roleId,
+        ];
+    }
+
     public function render()
     {
         $this->roles = Role::latest()->get();
@@ -28,14 +35,15 @@ class RoleManagement extends Component
 
     public function save()
     {
-        $this->validate(['name' => 'required|unique:roles,name,' . $this->roleId]);
+        $this->validate($this->rules());
 
-        if ($this->isEditing) {
-            Role::findOrFail($this->roleId)->update(['name' => $this->name]);
-        } else {
-            Role::create(['name' => $this->name]);
-        }
+        $data = [
+            'name' => $this->name,
+        ];
 
+        Role::updateOrCreate(['id' => $this->roleId], $data);
+
+        session()->flash('message', $this->isEditing ? 'Role updated.' : 'Role created.');
         $this->resetInput();
     }
 
@@ -51,5 +59,6 @@ class RoleManagement extends Component
     {
         Role::findOrFail($id)->delete();
         $this->resetInput();
+        session()->flash('message', 'Role deleted.');
     }
 }

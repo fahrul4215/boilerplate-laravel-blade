@@ -35,6 +35,18 @@
                 </div>
 
                 <div>
+                    <label for="role" class="block text-sm font-medium text-gray-700">role</label>
+                    <select name="role" id="role" wire:model.defer="role"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <option value="">Select Role</option>
+                        @foreach($roles as $role)
+                            <option value="{{ $role->name }}">{{ $role->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('role') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
+                </div>
+
+                <div>
                     <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                     <input type="password" id="password" wire:model.defer="password"
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
