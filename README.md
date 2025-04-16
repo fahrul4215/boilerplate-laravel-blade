@@ -60,14 +60,6 @@ Before starting, ensure your system meets the following requirements:
 
 - **Database Configuration**: Easily configurable via the `.env` file.
 - **Livewire Components**: Create dynamic components using:
-
-    ```bash
-    php artisan make:livewire ComponentName
-    ```
-
-  - Component class: `app/Http/Livewire/`
-  - Blade view: `resources/views/livewire/`
-
 - **Routing**: Define routes in `routes/web.php` to include Livewire components.
 - **Authentication**: Use Laravel Jetstream or Breeze for authentication scaffolding.
 
@@ -78,4 +70,4 @@ Before starting, ensure your system meets the following requirements:
 
 ---
 
-Enjoy building your application with this Laravel boilerplate!
+Enjoy it!
